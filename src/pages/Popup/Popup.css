@@ -1,0 +1,215 @@
+.App {
+  position: absolute;
+  top: 0px;
+  bottom: 0px;
+  left: 0px;
+  right: 0px;
+  text-align: center;
+  height: 100%;
+  padding: 10px;
+}
+
+.App-logo {
+  height: 30vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+h1 {
+  color: #FFFFFF;
+  margin: 0;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.coinContainer {
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 20px;
+  padding-right: 20px;
+}
+
+.coinInputsContainer {
+  width: 230px;
+  display: flex;
+  justify-content: space-between;
+  color: white; 
+}
+
+.TextField{
+  width: 105px;
+}
+
+.coinButton{
+  width: 70px;
+}
+
+button {
+  cursor: pointer;
+}
+
+.delete {
+  background-color: #CF3A53;
+  color: #FFFFFF;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-family: 'Heebo' !important;
+  font-weight: 400;
+}
+
+.delete:hover {
+  background-color: #B52C43;
+}
+
+.add {
+  background-color: #06B6C9;
+  color: #F7F3F3;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  font-family: 'Heebo' !important;
+  font-weight: 400;
+}
+
+.add:hover {
+  background-color: #058F9E;
+}
+
+.left {
+  margin-right: 90px;
+}
+
+.submit {
+  background-color: #00CE8B;
+  color: #FFFFFF;
+  border: none;
+  border-radius: 10px;
+  width: 230px;
+  outline: none;
+  height: 60px;
+  margin-right: 200px;
+  margin-bottom: 6px;
+  cursor: pointer;
+  white-space: pre-wrap;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.submit:hover {
+  background-color: #00A36D;
+}
+
+.submit:active {
+  transform: translateY(2px);
+}
+
+button:active {
+  transform: translateY(2px);
+}
+
+.disabled:hover{
+  background-color: #CF3A53 !important;
+  transform: none !important;
+}
+
+.disabled{
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.error {
+  background-color: #B52C43 !important;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.popUpContainer{
+  height: 100%;
+  width: 100%;
+}
+
+.formContainer{ 
+  padding: 25px;
+  margin: 10px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-height: 420px;
+}
+
+.headerContainer{
+  background-color: #444141;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.submitContainer{
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding-top: 30px;
+}
+
+.myForm {
+  overflow-y:overlay;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #06B6C9;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #058F9E; 
+}
+
+.textFieldLabel{
+  color: #393A3D !important;
+}
+
+.textFieldInput{
+  color: #393A3D !important;
+  background-color: #E4E4E4 !important;
+}
