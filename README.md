@@ -23,7 +23,7 @@ There are two separate pieces to this extension-- the popup script and the conte
 
 ### Popup
 
-The [**popup**](./src/pages/Popup) script defines the popup window that you see when you click the extension icon in the toolbar. 
+The [**popup**](./src/pages/Popup/Popup.jsx) script defines the popup window that you see when you click the extension icon in the toolbar. 
 
 The popup script itself **cannot interact with a website**. That is the content script's job. The popup **gathers information** from the user, then sends it off to the content script to interact with the Mint website.
 
@@ -38,7 +38,7 @@ Once the form is submitted, a **message is sent to the content script** with an 
 
 ### Content Script 
 
-The [**content**](./src/pages/Content) script is able to interact directly with web pages. 
+The [**content**](./src/pages/Content/index.js) script is able to interact directly with web pages. 
 
 After the content script receives a message from the popup with information about the user's cryptocurrency, it **fetches the prices of the coin(s) from the Binance API** and calculates the total value of the user's crypto. 
 
