@@ -36,7 +36,7 @@ The form **can only be submitted if all the inputs are valid**:
  
 Once the form is submitted, a **message is sent to the content script** (using [chrome.tabs.sendMessage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-sendMessage)) with an array of all the coin objects. An object might look like {name: BTC, quantity: 0.5}. The popup script also save's the user's coin data to chrome.storage so that the latest crypto is always there when the extension is opened.
 
-### Content Script 
+### Content 
 
 The [**content**](./src/pages/Content/index.js) script is able to interact directly with web pages. 
 
