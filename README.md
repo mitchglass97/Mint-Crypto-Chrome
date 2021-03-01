@@ -3,7 +3,7 @@
 
 ![Mint Crypto screenshot](https://i.imgur.com/LOdJl2c.png)
 
-Mint Crypto is a Chrome extension designed to **easily keep track of the value of your cryptocurrency in your Mint account**. All you have to do is enter the symbol and quantity of your coin(s), click Sync, and Mint Crypto will create (or edit) a custom property called "Cryptocurrency" with the current value of your crypto.
+Mint Crypto is a Chrome extension designed to **easily keep track of the value of your cryptocurrency in your Mint account**. All you have to do is enter the symbol and quantity of your coin(s), click Sync, and Mint Crypto will create (or edit) a custom asset/property in Mint called "Cryptocurrency" with the current value of your crypto.
 
 Mint Crypto makes it easy to keep your account updated with the value of cryptocurrency that you own in wallets/exchanges that can't be added to Mint natively, such as Kraken, Binance, Natrium NANO wallet, and hardware wallets.
 
@@ -38,8 +38,8 @@ Once the form is submitted, a **message is sent to the content script** (using [
 
 ### Content 
 
-The [**content**](./src/pages/Content/index.js) script is able to interact directly with web pages. 
+The [**content**](./src/pages/Content/index.js) script takes information from the popup and **directly interacts with the Mint.com web page.**
 
 After the content script receives a message from the popup with information about the user's cryptocurrency, it **fetches the prices of the coin(s) from the Binance API** and calculates the total value of the user's crypto. 
 
-The content script will then interact with the website and create or edit a property named "Cryptocurrency". If the property already exists (e.g. if the user has already used the extension at least once), then Mint Crypto just updates the existing property.
+The content script will then interact with Mint.com and click through the process of either editing or creating a property/asset named "Cryptocurrency". If the property already exists (e.g. if the user has already used the Mint Crypto extension at least once), then Mint Crypto just updates the existing property.
