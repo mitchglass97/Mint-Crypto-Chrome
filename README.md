@@ -19,7 +19,7 @@ This extension was built off of [lxieyang's Chrome Extension Boilerplate with Re
 
 ## Code
 
-There are two separate pieces to this extension-- the popup script and the content script. *(Note: Chrome extensions can also include a third piece-- a background script-- but this extension does not use a background script.)*
+There are two separate pieces to the Mint Crypto Chrome extension-- the popup script and the content script. Note that Chrome extensions *can* also include a third piece, a background script, but this extension does not use a background script.
 
 ### Popup
 
