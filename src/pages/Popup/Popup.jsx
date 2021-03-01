@@ -19,7 +19,6 @@
 // homepage but NOT Logged in, the content script will receive the message
 // but send a response of {loggedIn: false}. popup will display an error and 
 // tell the user that they must be logged into Mint.com.
-// 
 //
 // The content script will then calculate the value of all the coins
 // using price data from the Binance API, then either create or modify a 
@@ -204,17 +203,17 @@ render() {
     let {coins} = this.state;
     let error = this.state.error;
     let submitButtonText;
-    let myClass="submit";
+    let submitButtonClass="submit";
     
     // Change submit button text based on error state
     switch(error) {
       case "notOnMintURL":
         submitButtonText = "Error! - Please log into Mint.com (If you are logged into Mint.com, please refresh the page)"
-        myClass="submit error";
+        submitButtonClass="submit error";
         break;
       case "onMintURLButNotLoggedIn":
         submitButtonText = "Error! - Please log into Mint.com"
-        myClass="submit error";
+        submitButtonClass="submit error";
         break;
       // no error
       default:
@@ -235,7 +234,7 @@ render() {
             />
           </form>
           <div className="submitContainer">
-            <input onClick={this.handleSubmit} type="submit" value={submitButtonText} className={myClass}/> 
+            <input onClick={this.handleSubmit} type="submit" value={submitButtonText} className={submitButtonClass}/> 
           </div>
         </div>
       </div>
