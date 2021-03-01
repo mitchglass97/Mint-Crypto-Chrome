@@ -34,7 +34,7 @@ The form **can only be submitted if all the inputs are valid**:
  - An input in the "**Name**" field is valid if it matches a symbol in Binance's list of supported coins, which is fetched from the Binance API when the popup is opened and stored in an array. Coins must be entered as their *symbol*, e.g. BTC not Bitcoin.
  - An input in the "**Quantity**" field is valid if it is a valid number and greater than 0.
  
-Once the form is submitted, a **message is sent to the content script** with an array of all the coin objects. An object might look like {name: BTC, quantity: 0.5}. The popup script also save's the user's coin data to chrome.storage so that the latest coin is always there when the extension is opened.
+Once the form is submitted, a **message is sent to the content script** (using [chrome.tabs.sendMessage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-sendMessage)) with an array of all the coin objects. An object might look like {name: BTC, quantity: 0.5}. The popup script also save's the user's coin data to chrome.storage so that the latest coin is always there when the extension is opened.
 
 ### Content Script 
 
