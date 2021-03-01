@@ -4,8 +4,7 @@
 //
 // Each CoinInputs has two additional elements that display conditionally:
 // 1) A "Delete Coin" button. This removes the target coin from the popup state
-//    This button appears next to each coin UNLESS there is only one coin, 
-//    in which case there is no delete button.
+//    If there is only one coin, a disabled/inactive delete button will appear.
 //
 // 2) An "Add Coin" button. This adds one empty coin object
 //    to the popup state

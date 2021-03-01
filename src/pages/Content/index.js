@@ -63,7 +63,6 @@ async function calculateCryptoValue(coinData) {
 
         // Calculate value
         coinValue = (coinData[i].coinAmount*price.price).toFixed(2);
-        console.log("value of " + coinData[i].coinAmount + " " + coinData[i].coinName + " at price of " + price.price + " per coin is: " + coinValue);
         sumAllCoins += Number(coinValue);
     }
     sumAllCoins = sumAllCoins.toFixed(2);
