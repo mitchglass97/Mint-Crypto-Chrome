@@ -6,8 +6,9 @@
 // to enter in the form. The minimum amount is 1.
 //
 // The form can only be submitted if all the inputs are valid,
-// meaning that all the coin names match an item in the coinList array,
-// and all the coin amounts are valid numbers, greater than 0.
+// meaning that all the coin names match an item in the coinsSupportedOnBinance
+// array (which is populated by fetching Binance API for a list of all coins 
+// supported by the Binance API) and all the coin amounts are valid numbers greater than 0.
 //
 // Once the form is submitted, a message is sent to the content script
 // with an array of all the coin objects. If no response is received from the
