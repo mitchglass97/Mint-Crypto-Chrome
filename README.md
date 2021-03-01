@@ -11,7 +11,7 @@ Your latest crypto submission is always stored in the extension via [chrome.stor
 
 Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs)  to get crypto price data.
 
-This extension was built off of [lxieyang's Chrome extension boilerplate, which uses React 17 and Webpack 5](https://github.com/lxieyang/chrome-extension-boilerplate-react)
+This extension was built off of [lxieyang's Chrome Extension Boilerplate with React 17 and Webpack 5](https://github.com/lxieyang/chrome-extension-boilerplate-react)
 
 ## Download
 
