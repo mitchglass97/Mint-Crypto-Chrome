@@ -23,9 +23,9 @@ There are two separate pieces to this extension-- the popup script and the conte
 
 ### Popup
 
-The [**popup**](./src/pages/Popup/Popup.jsx) script defines the popup window that you see when you click the extension icon in the toolbar. 
+The [**popup**](./src/pages/Popup/Popup.jsx) script defines the **popup window that you see when you click the extension icon** in the toolbar. 
 
-The popup script itself **cannot interact with a website**. That is the content script's job. The popup **gathers information** from the user, then sends it off to the content script to interact with the Mint website.
+The popup script itself **cannot interact with a website**. That is the content script's job. The popup **gathers information from the user**, then sends it off to the content script to interact with the Mint website.
 
 The popup window displays a form where a user can input the symbol and amount of a cryptocurrency. A user can dynamically add or delete any desired number of cryptocurrencies to the form. The minimum amount is 1.
 
