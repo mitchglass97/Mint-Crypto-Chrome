@@ -3,7 +3,7 @@
 
 ![Mint Crypto screenshot](https://i.imgur.com/LOdJl2c.png)
 
-Mint Crypto is a Chrome extension designed to **easily keep track of the value of your cryptocurrency in your Mint account**. All you have to do is enter the symbol and quantity of your coin(s), click Sync, and Mint Crypto will create (or edit) a custom asset/property in Mint called "Cryptocurrency" with the current value of your crypto.
+Mint Crypto is a Chrome extension designed to easily **keep track of the value of your cryptocurrency in your [Mint](https://mint.intuit.com/) account**. All you have to do is enter the symbol and quantity of your coin(s), click Sync, and Mint Crypto will create (or edit) a custom asset/property in Mint called "Cryptocurrency" with the current value of your crypto.
 
 Mint Crypto makes it easy to keep your account updated with the value of cryptocurrency that you own in wallets/exchanges that can't be added to Mint natively, such as Kraken, Binance, Natrium NANO wallet, and hardware wallets.
 
