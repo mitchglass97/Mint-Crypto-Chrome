@@ -171,32 +171,32 @@ class Popup extends React.Component {
       chrome.tabs.query({active: true, currentWindow: true}, (tabs) => {
         chrome.tabs.sendMessage(tabs[0].id, {coinData: this.state.coins}, (response) => {
 
-            // content script did not send a response = user is not on a mint.intuit.com/* URL
-            // do nothing besides change state.error
-            if(response == undefined) {
-              this.setState({
-                error: "notOnMintURL"
-              });
-            } 
+          // content script did not send a response = user is not on a mint.intuit.com/* URL
+          // do nothing besides change state.error
+          if(response == undefined) {
+            this.setState({
+              error: "notOnMintURL"
+            });
+          } 
 
-            // content script sent a response but user is NOT logged into Mint so content script
-            // cannot do its job
-            else if (response.loggedIn == false) {
-              this.setState({
-                error: "onMintURLButNotLoggedIn"
-              });
-            }
-            // content script sent a response. user is logged into Mint.com. 
-            // content script will take it from here
-            // save user's coin data to Chrome Storage and close pop-up window.
-            else {
-              this.setState({
-                error: "none"
-              });
+          // content script sent a response but user is NOT logged into Mint so content script
+          // cannot do its job
+          else if (response.loggedIn == false) {
+            this.setState({
+              error: "onMintURLButNotLoggedIn"
+            });
+          }
+          // content script sent a response. user is logged into Mint.com. 
+          // content script will take it from here
+          // save user's coin data to Chrome Storage and close pop-up window.
+          else {
+            this.setState({
+              error: "none"
+            });
 
-              this.saveDataToChromeStorage();
-              this.closePopUpWindow();
-            }
+            this.saveDataToChromeStorage();
+            this.closePopUpWindow();
+          }
         });
     });}
   }
