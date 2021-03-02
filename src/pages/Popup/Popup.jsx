@@ -75,18 +75,8 @@ class Popup extends React.Component {
   // indicator (red line).
   handleChangeForm = (e) => {
 
-    // Ignore spaces
-    if( this.isUserTypingSpaces(e) ) {
-      return;
-    }
-
-    // Ignore numbers if user is typing into a "coin name" field
-    if( this.isUserTypingNumbersIntoNameField(e) ) {
-      return;
-    }
-    
-    // Ignore letters if user is typing into a "coin quantity" field
-    if( this.isUserTypingLettersIntoQuantityField(e) ) {
+    // Ignore spaces, numbers typed into a "name" input, and letters into a "quantity" input
+    if( this.isUserTypingSpaces(e) | this.isUserTypingNumbersIntoNameField(e) | this.isUserTypingLettersIntoQuantityField(e)) {
       return;
     }
 
