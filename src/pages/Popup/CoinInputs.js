@@ -1,6 +1,6 @@
 // CoinInputs is a component used in the popup.
 // In each CoinInputs are two TextField elements for the user to
-// input the name and amount of the coin.
+// input the name and quantity of the coin.
 //
 // Each CoinInputs has two additional elements that display conditionally:
 // 1) A "Delete Coin" button. This removes the target coin from the popup state
@@ -33,7 +33,7 @@ const CoinInputs = (props) => {
 
   return (
     props.coins.map((val, idx)=> {
-      let coinID = `coin-${idx}`, coinAmountId = `coinAmount-${idx}`
+      let coinID = `coin-${idx}`, coinQuantityId = `coinQuantity-${idx}`
       var	deleteCoin	=	props.deleteCoin;
       var	addCoin	=	props.addCoin;
 
@@ -42,7 +42,7 @@ const CoinInputs = (props) => {
           <div className="coinInputsContainer">
             <ThemeProvider theme={theme}>
               <TextField
-                error={!props.coins[idx].coinNameValid && props.coins[idx].submit}
+                error={!props.coins[idx].isCoinNameValid && props.coins[idx].hasFormBeenSubmitted}
                 type="text"
                 name={coinID}
                 id={coinID}
@@ -56,12 +56,12 @@ const CoinInputs = (props) => {
                 InputLabelProps={{className: "textFieldLabel"}}
               />
             <TextField
-              error={!props.coins[idx].coinAmountValid && props.coins[idx].submit}
+              error={!props.coins[idx].isCoinQuantityValid && props.coins[idx].hasFormBeenSubmitted}
               type="text"
-              name={coinAmountId}
-              id={coinAmountId}
-              value={props.coins[idx].coinAmount} 
-              inputProps={{"data-id": idx, "data-field-type": "coinAmount", className: "textFieldInput"}}
+              name={coinQuantityId}
+              id={coinQuantityId}
+              value={props.coins[idx].coinQuantity} 
+              inputProps={{"data-id": idx, "data-field-type": "coinQuantity", className: "textFieldInput"}}
               autoComplete="off"
               spellCheck="false"
               variant="filled"

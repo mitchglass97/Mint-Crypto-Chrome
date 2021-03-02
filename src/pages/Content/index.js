@@ -18,13 +18,16 @@
 
 let intervalTimer = null;
 
-// Listener to receive a message from Popup
+// Listener to receive a message from popup script
 chrome.runtime.onMessage.addListener(
+
+    // message received from popup
     function(message, sender, sendResponse) {
+
         setTimeout(function() {
-            if(isLoggedIntoMint()) {
+            if(isUserLoggedIntoMint()) {
                 sendResponse({loggedIn: true});
-                calculateCryptoValue(message.coinData);
+                updateMintAccount(message.coinData);
             } else {
                 sendResponse({loggedIn: false});
             }
@@ -32,7 +35,7 @@ chrome.runtime.onMessage.addListener(
         return true;
 }); 
 
-function isLoggedIntoMint() {
+function isUserLoggedIntoMint() {
     let navBar = document.getElementsByClassName("navbar-nav");
     if(navBar.length > 0) {
         return true;
@@ -41,19 +44,35 @@ function isLoggedIntoMint() {
 }
 
 // Calculate value of the coins using the Binance API
-async function calculateCryptoValue(coinData) {
+async function updateMintAccount(coinData) {
 
     // Add a visual overlay on top of the page.
     // Overlay will be removed once the Mint
     // account is updated.
     addOverlay();
 
+    // Go to the mint overview page (in case we are another page on Mint.com e.g. https://mint.intuit.com/settings)
+    goToMintOverviewPage();
+
+    let cryptoValue = await calculateValueOfUserCrypto(coinData);
+
+    setTimeout(function(){ 
+        if(doesMintCryptoPropertyExist()) {
+            editMintProperty(cryptoValue);
+        } else {
+            createMintProperty(cryptoValue);
+        }
+    }, 3000);
+}
+
+async function calculateValueOfUserCrypto(coinData) {
     // For each coin, get the current price from Binance API.
-    // Then calculate the value (current price X amount)
+    // Then calculate the value (current price X quantity)
     let stringAPI = "";
     let price = "";
     let coinValue = 0;
-    let sumAllCoins=0;
+    let sum=0;
+
     for(let i=0; i<coinData.length; i++) {
 
         // Fetch price data 
@@ -62,23 +81,12 @@ async function calculateCryptoValue(coinData) {
         price = await price.json();
 
         // Calculate value
-        coinValue = (coinData[i].coinAmount*price.price).toFixed(2);
-        sumAllCoins += Number(coinValue);
+        coinValue = (coinData[i].coinQuantity*price.price).toFixed(2);
+        sum += Number(coinValue);
     }
-    sumAllCoins = sumAllCoins.toFixed(2);
 
-    // Go to the mint overview page (in case we are another page on Mint.com e.g. https://mint.intuit.com/settings)
-    goToMintOverviewPage();
-
-    setTimeout(function(){ 
-        // Using the calculated value, either create or update existing "Cryptocurrency" property
-        // depending on whether it exists
-        if(doesMintCryptoPropertyExist()) {
-            editMintProperty(sumAllCoins);
-        } else {
-            addMintProperty(sumAllCoins);
-        }
-    }, 3000);
+    sum = sum.toFixed(2);
+    return sum;
 }
 
 // Scrub the web page to check if there is a property named "Cryptocurrency"
@@ -92,8 +100,8 @@ function doesMintCryptoPropertyExist() {
     return false;
 }
 
-// Create a property named "Cryptocurrency" in Mint with the calculated value
-function addMintProperty(sumAllCoins) {
+// Create a property named "Cryptocurrency" in Mint with the calculated crypto value
+function createMintProperty(cryptoValue) {
 
     // Clicking through the process of adding a property in Mint
     let addAccountButton = document.getElementById("link-addaccount");
@@ -120,7 +128,7 @@ function addMintProperty(sumAllCoins) {
             propertyName.value = "Cryptocurrency";
 
             let propertyValue = document.getElementById("propertyValue");
-            propertyValue.value = sumAllCoins; // use the crypto value we calculated as the property value
+            propertyValue.value = cryptoValue; // use the crypto value we calculated as the property value
 
             let submitAddAccountButton = document.getElementsByClassName("btn btn-primary modal-btn-primary addProperty")[0];
             submitAddAccountButton.click();
@@ -136,7 +144,7 @@ function addMintProperty(sumAllCoins) {
 }
 
 // Edit the poperty named "Cryptocurrency", update the value to our calculated value
-function editMintProperty(sumAllCoins) {
+function editMintProperty(cryptoValue) {
 
     // Clicking through the process of editing a property in Mint
     let editButton = document.getElementsByClassName("actionsMenuIcon icon icon-gear-gray3")[0];
@@ -166,7 +174,7 @@ function editMintProperty(sumAllCoins) {
             let allInputElements = document.getElementsByTagName("input");
             for(let i=0; i<allInputElements.length; i++) {
                 if(allInputElements[i].value == "Cryptocurrency") {
-                    allInputElements[i+1].value = sumAllCoins;
+                    allInputElements[i+1].value = cryptoValue;
                 }
             }
             
