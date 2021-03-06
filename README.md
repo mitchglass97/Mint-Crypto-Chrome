@@ -15,7 +15,7 @@ This extension was built off of [lxieyang's Chrome Extension Boilerplate with Re
 
 ## Download
 
-*Currently awaiting Chrome Web Store approval*
+Currently available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba?hl=en&authuser=1)
 
 ## Code
 
