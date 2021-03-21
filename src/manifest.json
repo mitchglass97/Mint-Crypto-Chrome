@@ -2,6 +2,7 @@
   "manifest_version": 3,
   "name": "Mint Cryptocurrency",
   "options_page": "options.html",
+  "background": { "service_worker": "background.bundle.js" },
   "action": {
     "default_popup": "popup.html",
     "default_icon": "icon-34.png"
@@ -17,7 +18,7 @@
     }
   ],
   "permissions": [
-    "storage"
+    "storage", "tabs"
   ],
   "web_accessible_resources": [
     {
