@@ -1,10 +1,9 @@
 // Background script
 
 let mintCheckBuffer = false; // boolean used as a buffer. when we check if current URL matches
-let originTab = 999; // we set this variable to the ID of whatever tab user is on when they log into Mint (used to send messages to the correct originating tab)
 
 // Listener to receive messages
-chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendRes1onse) {
 	// Message from Content script telling us to close whatever tab the message came from
 	if (message.message == "closeTab") {
 		chrome.tabs.remove(sender.tab.id, () => {
