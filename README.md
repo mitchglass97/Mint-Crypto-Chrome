@@ -4,15 +4,15 @@
 
 Mint Crypto is a Chrome extension designed to easily **keep the value of your cryptocurrency updated in your [Mint](https://mint.intuit.com/) account**. All you have to do is enter the symbol and quantity of your crypto(s), click Sync, and Mint Crypto will create or edit a custom asset/property in Mint called "Cryptocurrency" with the current value of your crypto.
 
-Mint Crypto has a popup window (seen below) that can be opened by clicking the extension icon in the toolbar. You must use this pop-up window for first-time setup. **After first-time setup, Mint Crypto will automatically update your account with the current value of your cryptos in a new tab every time you log into Mint** (as long as it has been longer than 30 minutes since your last sync).
+Mint Crypto has a popup window (seen below) that can be opened by clicking the extension icon in the toolbar. You must use this pop-up window for first-time setup. **After first-time setup, Mint Crypto will automatically update your account with the current value of your crypto in a new tab every time you log into Mint** as long as it has more than than 30 minutes since your last sync.
 
 ![Mint Crypto screenshot](https://i.imgur.com/LOdJl2c.png)
 
 You can still use the pop-up window after first-time setup if you want to 1) modify your holdings or 2) force a sync.
 
-Mint Crypto makes it easy to keep your account updated with the value of cryptocurrency that you own in wallets/exchanges that can't be added to Mint natively, such as Kraken, Binance, and wallets (such as Natrium, a popular NANO wallet).
+Mint Crypto makes it easy to keep add crypto to Mint that you own in places that can't be added to Mint natively, such as exchanges like Kraken and Binance, as well as wallets like Natrium (NANO wallet).
 
-Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs) to get crypto price data.
+Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs) to get crypto price data, meaning that Mint Crypto supports any coins that Binance supports.
 
 This extension was built off of [lxieyang's Chrome Extension Boilerplate with React 17 and Webpack 5](https://github.com/lxieyang/chrome-extension-boilerplate-react)
 

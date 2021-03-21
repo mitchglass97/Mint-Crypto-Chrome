@@ -3,7 +3,7 @@
 let mintCheckBuffer = false; // boolean used as a buffer. when we check if current URL matches
 
 // Listener to receive messages
-chrome.runtime.onMessage.addListener(function (message, sender, sendRes1onse) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	// Message from Content script telling us to close whatever tab the message came from
 	if (message.message == "closeTab") {
 		chrome.tabs.remove(sender.tab.id, () => {
