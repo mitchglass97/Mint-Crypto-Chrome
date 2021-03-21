@@ -18,7 +18,7 @@ This extension was built off of [lxieyang's Chrome Extension Boilerplate with Re
 
 ## Important
 
-1. If you change the name of the property from "Cryptocurrency", the extension will not work)
+1. If you change the name of the property from "Cryptocurrency", the extension will not work
 2. Coins must be entered as their _symbol_, e.g. must be "BTC" not "Bitcoin"
 3. Currently if you need to modify your crypto holdings, you first need to let the extension run an automatic sync, then you can interact with the extension pop-up (via toolbar icon) after the automatic sync has completed. In a future update, I will add an option (a button on the "Syncing" notification) to abort the automatic update.
 
@@ -71,7 +71,7 @@ Mint Crypto does not collect or have access to any personal info. The extension 
 
 1.0.1 - Mint Crypto now syncs automatically in a new tab when user logs into Mint
 
-## Graphic Design
+## Logo/Design
 
 I created the Mint Crypto logo using Inkscape, and the promo images (example below) using Figma
 
