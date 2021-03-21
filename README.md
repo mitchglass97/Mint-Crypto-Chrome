@@ -75,4 +75,4 @@ Mint Crypto does not collect or have access to any personal info. The extension 
 
 I created the Mint Crypto logo using Inkscape, and the promo images (example below) using Figma
 
-![big - chrome store](https://user-images.githubusercontent.com/52224377/111899432-9df76e80-89fa-11eb-9d57-2a4167241dfb.png)
+![big - chrome store](https://user-images.githubusercontent.com/52224377/111917849-1a686c80-8a50-11eb-849e-c5607f39f175.png)
