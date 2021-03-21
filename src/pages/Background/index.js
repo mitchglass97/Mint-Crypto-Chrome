@@ -49,7 +49,7 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 						setMintCheckBufferFalse();
 					}, 30000);
 
-					// Check if its been over 30 minutes hour since last sync
+					// Check if its been over 30 minutes since last sync
 					chrome.storage.sync.get(["syncTime"], (result) => {
 						const storedJSONDate = result["syncTime"];
 						const storedDate = new Date(storedJSONDate);

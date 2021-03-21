@@ -232,10 +232,8 @@ function createMintProperty(cryptoValue, closeTabWhenDone) {
 			submitAddAccountButton.click();
 
 			setTimeout(() => {
-				let tempDate = new Date();
-				chrome.storage.sync.set({ mintCryptoLastSyncTime: tempDate }, function () {
-					//console.log("saving date to chrome storage:" + tempDate);
-				});
+				const currentTime = new Date().toJSON();
+				chrome.storage.sync.set({ syncTime: currentTime });
 
 				if (closeTabWhenDone) {
 					complete = true;

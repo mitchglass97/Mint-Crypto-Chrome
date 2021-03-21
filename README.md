@@ -71,4 +71,8 @@ Mint Crypto does not collect or have access to any personal info. The extension 
 
 1.0.1 - Mint Crypto now syncs automatically in a new tab when user logs into Mint
 
+## Graphic Design
+
+I created the Mint Crypto logo using Inkscape, and the promo images (example below) using Figma
+
 ![big - chrome store](https://user-images.githubusercontent.com/52224377/111899432-9df76e80-89fa-11eb-9d57-2a4167241dfb.png)
