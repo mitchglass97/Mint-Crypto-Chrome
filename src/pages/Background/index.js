@@ -11,7 +11,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 			// Tell the current content script that the sync is complete
 
 			chrome.storage.sync.get(["originTab"], function (result) {
-				console.log("getting origin tab value currently is " + result.originTab);
 				chrome.tabs.sendMessage(result.originTab, { fromBackground: "syncComplete" }, (response) => {
 					//console.log(response);
 				});
@@ -41,7 +40,7 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 				// Check if user is logged into mint
 				if (mintLoggedInURLTest.test(tab.url) && mintCheckBuffer == false) {
 					chrome.storage.sync.set({ originTab: tabId }, function () {
-						console.log("setting origin tab value is set to " + tabId);
+						//console.log(tabId);
 					});
 
 					mintCheckBuffer = true;
@@ -55,9 +54,8 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 						const storedDate = new Date(storedJSONDate);
 						let currentDate = new Date();
 						const diffTime = Math.abs((currentDate - storedDate) / (1000 * 60));
-						//console.log(diffTime + " minutes since last sync");
 
-						if (isNaN(diffTime) || diffTime > 3) {
+						if (isNaN(diffTime) || diffTime > 30) {
 							setTimeout(() => {
 								// tell Content script to display a message we are syncing
 								chrome.tabs.sendMessage(
