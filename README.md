@@ -1,4 +1,4 @@
-![Mint Crypto logo](https://i.imgur.com/cIajbfa.png)
+![Mint Crypto logo](https://user-images.githubusercontent.com/52224377/111899772-84572680-89fc-11eb-9bac-35fbccf564a9.png)
 
 # Mint Crypto Chrome Extension
 
@@ -8,9 +8,9 @@ Mint Crypto has a popup window (seen below) that can be opened by clicking the e
 
 ![Mint Crypto screenshot](https://i.imgur.com/LOdJl2c.png)
 
-You can still use the pop-up window after first-time setup if you need to 1) modify your holdings or 2) force a sync.
+You can still use the pop-up window after first-time setup if you want to 1) modify your holdings or 2) force a sync.
 
-Mint Crypto makes it easy to keep your account updated with the value of cryptocurrency that you own in wallets/exchanges that can't be added to Mint natively, such as Kraken, Binance, Natrium NANO wallet, and hardware wallets.
+Mint Crypto makes it easy to keep your account updated with the value of cryptocurrency that you own in wallets/exchanges that can't be added to Mint natively, such as Kraken, Binance, and wallets (such as Natrium, a popular NANO wallet).
 
 Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs) to get crypto price data.
 
@@ -25,6 +25,8 @@ This extension was built off of [lxieyang's Chrome Extension Boilerplate with Re
 ## Download
 
 Currently available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba?hl=en&authuser=1)
+[![chrome web store icon](https://user-images.githubusercontent.com/52224377/111899682-21658f80-89fc-11eb-9a54-bbbeb1412439.PNG)
+](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba?hl=en&authuser=1)
 
 ## Code
 
@@ -45,14 +47,6 @@ The form **can only be submitted if all the inputs are valid**:
 
 Once the form is submitted, a **message is sent to the content script** (using [chrome.tabs.sendMessage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-sendMessage)) with an array of all the coin objects. An object might look like {name: BTC, quantity: 0.5}. The popup script also save's the user's coin data to chrome.storage so that the latest crypto is always there when the extension is opened.
 
-### Background
-
-The background script is always running in the browser and has the highest-level access out of all the parts of a Chrome extension. The background script can do things like create a new tab in Chrome.
-
-The background script checks to see whether the user is logged into Mint.com. If the user is logged into mint, the Background script will facilitate an automatic sync by having a conversation with different tabs and telling them to run specific functions in the Content script (each tab has its own Content script). Please see the diagram below for an overview of how this is done.
-
-![Background Logic](https://user-images.githubusercontent.com/52224377/111896678-51effe00-89e9-11eb-9ecd-98160c2271c6.png)
-
 ### Content
 
 The [**content**](./src/pages/Content/index.js) script takes informationfrom the popup or background scripts and **directly interacts with the Mint.com web page.**
@@ -60,6 +54,14 @@ The [**content**](./src/pages/Content/index.js) script takes informationfrom the
 Content script will receive a message from background or popup scripts saying, hey, update the user's Mint account! The content script then fetches the prices of the coin(s) from the Binance API and calculates the total value of the user's crypto. The content script will then **interact with Mint.com and click through the process of either editing or creating a property/asset named "Cryptocurrency"**. If the property already exists (e.g. if the user has already used the Mint Crypto extension at least once), then Mint Crypto just updates the existing property.
 
 Two other things the Content script will do is **display either a "syncing" or "sync complete" message in the top right of the page**.
+
+### Background
+
+The background script is always running in the browser and has the highest-level access out of all the parts of a Chrome extension. The background script can do things like create a new tab in Chrome.
+
+The background script checks to see whether the user is logged into Mint.com. If the user is logged into mint, the Background script will facilitate an automatic sync by having a conversation with different tabs and telling them to run specific functions in the Content script (each tab has its own Content script). Please see the diagram below for an overview of how this is done.
+
+![Background Logic](https://user-images.githubusercontent.com/52224377/111896678-51effe00-89e9-11eb-9ecd-98160c2271c6.png)
 
 ## Safety/Security
 
