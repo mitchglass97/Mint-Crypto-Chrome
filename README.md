@@ -10,7 +10,7 @@ Mint Crypto has a popup window (seen below) that can be opened by clicking the e
 
 You can still use the pop-up window after first-time setup if you want to 1) modify your holdings or 2) force a sync.
 
-Mint Crypto makes it easy to keep add crypto to Mint that you own in places that can't be added to Mint natively, such as exchanges like Kraken and Binance, as well as wallets like Natrium (NANO wallet).
+Mint Crypto makes it easy to add crypto to Mint that you own in places that can't be added to Mint natively, such as exchanges like Kraken and Binance, as well as wallets like Natrium (NANO wallet).
 
 Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs) to get crypto price data, meaning that Mint Crypto supports any coins that Binance supports.
 
