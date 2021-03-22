@@ -54,7 +54,7 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 						let currentDate = new Date();
 						const diffTime = Math.abs((currentDate - storedDate) / (1000 * 60));
 
-						if (isNaN(diffTime) || diffTime > 30) {
+						if (isNaN(diffTime) || diffTime > 2) {
 							setTimeout(() => {
 								// tell Content script to display a message we are syncing
 								chrome.tabs.sendMessage(
