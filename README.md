@@ -63,9 +63,9 @@ The background script checks to see whether the user is logged into Mint.com. If
 
 ![Background Logic](https://user-images.githubusercontent.com/52224377/111896678-51effe00-89e9-11eb-9ecd-98160c2271c6.png)
 
-## Safety/Security
+## Privacy
 
-Mint Crypto does not collect or have access to any personal info. The extension runs locally and does not share any sort of info remotely.
+The extension runs locally on your machine only. Mint Crypto does not collect or share any information.
 
 ## Update History
 
