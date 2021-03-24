@@ -213,7 +213,7 @@ class Popup extends React.Component {
 						}
 					});
 				});
-			}, 500);
+			}, 250);
 		}
 	};
 

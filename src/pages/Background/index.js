@@ -1,6 +1,6 @@
 // Background script
 
-let mintCheckBuffer = false; // boolean used as a buffer. when we check if current URL matches
+let mintCheckBuffer = false;
 
 // Listener to receive messages
 chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
@@ -8,7 +8,6 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 	if (message.message == "closeTab") {
 		chrome.tabs.remove(sender.tab.id, () => {
 			// Tell the current content script that the sync is complete
-
 			chrome.storage.sync.get(["originTab"], function (result) {
 				chrome.tabs.sendMessage(result.originTab, { fromBackground: "syncComplete" }, (response) => {
 					//console.log(response);
@@ -16,36 +15,22 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 			});
 		});
 	}
-
-	// Message from Popup script telling user initiated a sync from Popup.
-	// We set mintCheckBuffer to true for 1 minute so that the background script
-	// ignores any URL changes from the popup sync that would prompt an automatic sync
-	else if (message.message == "popupSync") {
-		mintCheckBuffer = true;
-		setTimeout(function () {
-			setMintCheckBufferFalse();
-		}, 60000);
-	}
-});
-
-// Listener triggered whenever user navigates to a new URL in a tab
-chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
-	chrome.storage.sync.get("userSubmittedCoinData", (data) => {
-		// only attempt to run an auto-update if there is coin data saved
-		if (data.userSubmittedCoinData) {
-			if (tab.active) {
-				let mintLoggedInURLTest = new RegExp("https://mint.intuit.com/.");
-
-				// Check if user is logged into mint
-				if (mintLoggedInURLTest.test(tab.url) && mintCheckBuffer == false) {
-					chrome.storage.sync.set({ originTab: tabId }, function () {
+	// Message from Content script telling us that user is logged into Mint
+	// Run auto sync if conditions are met:
+	//
+	// 1) user has coin data saved (has done first-time setup)'
+	// 2) has been over 30 minutes since last sync
+	else if (message.message == "loggedIntoMint") {
+		if (mintCheckBuffer == false) {
+			mintCheckBuffer = true;
+			setTimeout(function () {
+				mintCheckBuffer = false;
+			}, 30000);
+			chrome.storage.sync.get("userSubmittedCoinData", (data) => {
+				if (data.userSubmittedCoinData) {
+					chrome.storage.sync.set({ originTab: sender.tab.id }, function () {
 						//console.log(tabId);
 					});
-
-					mintCheckBuffer = true;
-					setTimeout(function () {
-						setMintCheckBufferFalse();
-					}, 30000);
 
 					// Check if its been over 30 minutes since last sync
 					chrome.storage.sync.get(["syncTime"], (result) => {
@@ -55,57 +40,50 @@ chrome.tabs.onUpdated.addListener((tabId, change, tab) => {
 						const diffTime = Math.abs((currentDate - storedDate) / (1000 * 60));
 
 						if (isNaN(diffTime) || diffTime > 30) {
-							setTimeout(() => {
-								// tell Content script to display a message we are syncing
-								chrome.tabs.sendMessage(
-									tabId,
-									{ fromBackground: "displaySyncingOnActive" },
-									(response) => {
-										///console.log(response);
-									}
-								);
+							// tell Content script to display a message on that page saying that we are syncing
+							chrome.tabs.sendMessage(
+								sender.tab.id,
+								{ fromBackground: "displaySyncingOnActive" },
+								(response) => {
+									///console.log(response);
+								}
+							);
 
-								// create a new tab
-								chrome.tabs.create(
-									{
-										url: "https://mint.intuit.com/overview.event",
-										active: false,
-									},
-									(tab) => {
-										// wait a few seconds
-										setTimeout(() => {
-											// Tell new tab to run the content script for updating mint account
-											let coinMessage = {};
+							// create a new tab
+							chrome.tabs.create(
+								{
+									url: "https://mint.intuit.com/overview.event",
+									active: false,
+								},
+								(tab) => {
+									// wait a few seconds
+									setTimeout(() => {
+										// Tell new tab to run the content script for updating mint account
+										let coinMessage = {};
 
-											chrome.storage.sync.get("userSubmittedCoinData", (data) => {
-												if (data.userSubmittedCoinData) {
-													coinMessage = data.userSubmittedCoinData;
+										chrome.storage.sync.get("userSubmittedCoinData", (data) => {
+											if (data.userSubmittedCoinData) {
+												coinMessage = data.userSubmittedCoinData;
 
-													chrome.tabs.sendMessage(
-														tab.id,
-														{
-															fromBackground:
-																"runUpdateScript",
-															coinMessage: coinMessage,
-														},
-														(response) => {
-															//console.log(response);
-														}
-													);
-												}
-											});
-										}, 3000);
-									}
-								);
-							}, 3000);
+												chrome.tabs.sendMessage(
+													tab.id,
+													{
+														fromBackground: "runUpdateScript",
+														coinMessage: coinMessage,
+													},
+													(response) => {
+														//console.log(response);
+													}
+												);
+											}
+										});
+									}, 3000);
+								}
+							);
 						}
 					});
 				}
-			}
+			});
 		}
-	});
+	}
 });
-
-function setMintCheckBufferFalse() {
-	mintCheckBuffer = false;
-}

@@ -1,29 +1,27 @@
 {
-  "manifest_version": 3,
-  "name": "Mint Cryptocurrency",
-  "options_page": "options.html",
-  "background": { "service_worker": "background.bundle.js" },
-  "action": {
-    "default_popup": "popup.html",
-    "default_icon": "icon-34.png"
-  },
-  "icons": {
-    "128": "icon-128.png"
-  },
-  "content_scripts": [
-    {
-      "matches": ["https://mint.intuit.com/*"],
-      "js": ["contentScript.bundle.js"],
-      "css": ["content.styles.css"]
-    }
-  ],
-  "permissions": [
-    "storage", "tabs"
-  ],
-  "web_accessible_resources": [
-    {
-      "resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
-      "matches": []
-    }
-  ]
+	"manifest_version": 3,
+	"name": "Mint Cryptocurrency",
+	"options_page": "options.html",
+	"background": { "service_worker": "background.bundle.js" },
+	"action": {
+		"default_popup": "popup.html",
+		"default_icon": "icon-34.png"
+	},
+	"icons": {
+		"128": "icon-128.png"
+	},
+	"content_scripts": [
+		{
+			"matches": ["https://mint.intuit.com/*"],
+			"js": ["contentScript.bundle.js"],
+			"css": ["content.styles.css"]
+		}
+	],
+	"permissions": ["storage"],
+	"web_accessible_resources": [
+		{
+			"resources": ["content.styles.css", "icon-128.png", "icon-34.png"],
+			"matches": []
+		}
+	]
 }

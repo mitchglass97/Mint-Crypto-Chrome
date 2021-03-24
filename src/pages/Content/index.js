@@ -17,7 +17,12 @@
 // property.
 
 let intervalTimer = null;
-let complete = false;
+
+setTimeout(function () {
+	if (isUserLoggedIntoMint()) {
+		chrome.runtime.sendMessage({ message: "loggedIntoMint" });
+	}
+}, 3000);
 
 // Listener to receive a message from popup script
 chrome.runtime.onMessage.addListener(
@@ -236,7 +241,7 @@ function createMintProperty(cryptoValue, closeTabWhenDone) {
 				chrome.storage.sync.set({ syncTime: currentTime });
 
 				if (closeTabWhenDone) {
-					complete = true;
+					//console.log("closing tab");
 				} else {
 					let returnToOverviewButton = document.getElementsByClassName("goToOverivew")[0];
 					returnToOverviewButton.click();

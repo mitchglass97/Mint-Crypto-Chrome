@@ -1,11 +1,11 @@
 {
-	"name": "mint-crpytocurrency",
-	"version": "1.0.1",
+	"name": "mint-cryptocurrency",
+	"version": "1.0.2",
 	"description": "Add your crypto holdings to your Mint account, and keep them synced automatically.",
 	"license": "MIT",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/mitchglass97/Mint-Crypto"
+		"url": "https://github.com/mitchglass97/Mint-Crypto-Chrome"
 	},
 	"scripts": {
 		"build": "node utils/build.js",
