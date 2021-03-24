@@ -1,0 +1,22 @@
+body {
+  width: 500px;
+  max-height: 200px;
+  margin: 0;
+  font-family: 'Heebo', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  position: relative;
+  background-color: #333333;
+}
+
+code {
+  font-family: 'Heebo', sans-serif;
+}
+
+#app-container{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
