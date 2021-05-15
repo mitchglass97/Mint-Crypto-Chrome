@@ -26,10 +26,10 @@ This extension is built off of [lxieyang's Chrome Extension Boilerplate with Rea
 
 ## Download/Install
 
-Currently available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba?hl=en&authuser=1)
+Currently available in the [Chrome Web Store](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba)
 
 [![chrome web store icon](https://user-images.githubusercontent.com/52224377/111899682-21658f80-89fc-11eb-9a54-bbbeb1412439.PNG)
-](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba?hl=en&authuser=1)
+](https://chrome.google.com/webstore/detail/mint-cryptocurrency/dnbcgdhnmmicanggippnllpfjlidncba)
 
 ## Code
 
