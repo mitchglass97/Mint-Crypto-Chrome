@@ -17,6 +17,8 @@
 // property.
 
 let intervalTimer = null;
+let userCurrencySymbol = "USD";
+import secrets from "secrets";
 
 setTimeout(function () {
 	if (isUserLoggedIntoMint()) {
@@ -171,13 +173,30 @@ async function updateMintAccount(coinData, closeTabWhenDone) {
 	return true;
 }
 
+// Used to grab data from chrome.storage
+// Made the function this way so we could use "await",
+// as you cannot use await with chrome.storage.sync.get() directly
+async function getLocalStorageValue(key) {
+	return new Promise((resolve, reject) => {
+		try {
+			chrome.storage.sync.get(key, function (value) {
+				resolve(value);
+			});
+		} catch (ex) {
+			reject(ex);
+		}
+	});
+}
+
 async function calculateValueOfUserCrypto(coinData) {
 	// For each coin, get the current price from Binance API.
 	// Then calculate the value (current price X quantity)
 	let stringAPI = "";
 	let price = "";
+	let key = "";
 	let coinValue = 0;
 	let sum = 0;
+	let response = 1;
 
 	for (let i = 0; i < coinData.length; i++) {
 		// Fetch price data
@@ -191,6 +210,27 @@ async function calculateValueOfUserCrypto(coinData) {
 	}
 
 	sum = sum.toFixed(2);
+
+	// Convert sum from USD to another currency if neccessary
+
+	// Grab userCurrencySymbol from chrome.storage if it exists (if not, set it to USD)
+	const chromeResponse = await getLocalStorageValue("userCurrencySymbol");
+	userCurrencySymbol = chromeResponse.userCurrencySymbol;
+	if (userCurrencySymbol === undefined) {
+		userCurrencySymbol = "USD"; // symbol will be undefined if user never changes it bc it is not set in chrome.storage
+	}
+
+	// Use Free Currency Converter API to get the ratio of converting USD to the desired currency,
+	// then multiply sum times that value before adding it to Mint
+	if (userCurrencySymbol != "USD") {
+		key = "USD_" + userCurrencySymbol;
+		response = await fetch(
+			"https://free.currconv.com/api/v7/convert?q=" + key + "&compact=ultra&apiKey=" + secrets.currencyConverterApiKey
+		);
+		response = await response.json();
+		sum = sum * response[key];
+	}
+
 	return sum;
 }
 

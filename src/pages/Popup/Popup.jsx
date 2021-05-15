@@ -27,6 +27,10 @@
 import React from "react";
 import CoinInputs from "./CoinInputs";
 import "./Popup.css";
+import InputLabel from "@material-ui/core/InputLabel";
+import Select from "@material-ui/core/Select";
+import MenuItem from "@material-ui/core/MenuItem";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 let coinsSupportedOnBinance = [];
 
 class Popup extends React.Component {
@@ -44,7 +48,20 @@ class Popup extends React.Component {
 			},
 		],
 		error: "none",
+		userCurrencySymbol: "USD",
 	};
+
+	// theme for currency select dropdown (Materials UI) to use
+	theme = createMuiTheme({
+		typography: {
+			fontFamily: "Heebo, sans-serif",
+		},
+		palette: {
+			primary: {
+				main: "#06B6C9",
+			},
+		},
+	});
 
 	// After the component mounts, set state.coin to the data in chrome.storage (if the data exists).
 	// When a user successfully submits the popup form, the data (coin names and quantities)
@@ -56,6 +73,18 @@ class Popup extends React.Component {
 		chrome.storage.sync.get("userSubmittedCoinData", (data) => {
 			if (data.userSubmittedCoinData) {
 				this.setState({ coins: data.userSubmittedCoinData });
+			}
+		});
+
+		chrome.storage.sync.get("userCurrencySymbol", (data) => {
+			if (data.userCurrencySymbol) {
+				this.setState({
+					userCurrencySymbol: data.userCurrencySymbol,
+				});
+			} else {
+				this.setState({
+					userCurrencySymbol: "USD",
+				});
 			}
 		});
 
@@ -168,6 +197,13 @@ class Popup extends React.Component {
 		}
 	};
 
+	handleChangeCurrencySymbol = (e) => {
+		e.preventDefault();
+		this.setState({
+			userCurrencySymbol: e.target.value,
+		});
+	};
+
 	// This function is entered whenever user submits the form.
 	handleSubmitForm = (e) => {
 		e.preventDefault();
@@ -230,8 +266,8 @@ class Popup extends React.Component {
 	}
 
 	saveDataToChromeStorage() {
-		chrome.storage.sync.set({ userSubmittedCoinData: this.state.coins }, function () {
-			//console.log('Settings saved');
+		chrome.storage.sync.set({ userSubmittedCoinData: this.state.coins, userCurrencySymbol: this.state.userCurrencySymbol }, function () {
+			//console.log("Settings saved");
 		});
 	}
 
@@ -302,6 +338,29 @@ class Popup extends React.Component {
 							className={submitButtonClass}
 						/>
 					</div>
+					<ThemeProvider theme={this.theme}>
+						<InputLabel id='currency-symbol-dropdown'>
+							Currency of your Mint account (Mint Crypto will calculate the value of your crypto in this
+							currency)
+						</InputLabel>
+						<Select
+							labelId='currency-symbol-select-label'
+							id='currency-symbol-select'
+							value={this.state.userCurrencySymbol}
+							onChange={this.handleChangeCurrencySymbol}
+						>
+							<MenuItem value={"USD"}>USD</MenuItem>
+							<MenuItem value={"CAD"}>CAD</MenuItem>
+							<MenuItem value={"AUD"}>AUD</MenuItem>
+							<MenuItem value={"EUR"}>EUR</MenuItem>
+							<MenuItem value={"INR"}>INR</MenuItem>
+							<MenuItem value={"GBP"}>GBP</MenuItem>
+							<MenuItem value={"CNY"}>CNY</MenuItem>
+							<MenuItem value={"JPY"}>JPY</MenuItem>
+							<MenuItem value={"MXN"}>MXN </MenuItem>
+							<MenuItem value={"CHF"}>CHF</MenuItem>
+						</Select>
+					</ThemeProvider>
 				</div>
 			</div>
 		);

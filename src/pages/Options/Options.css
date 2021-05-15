@@ -1,50 +1,72 @@
 .OptionsContainer {
-  width: 100%;
-  height: 100%;
-  font-size: 2rem;
-  display: flex;
-  flex-direction: column;
-  font-family: 'Montserrat', sans-serif;
-  font-size: 70px;
+	width: 100%;
+	height: 100%;
+	font-size: 2rem;
+	display: flex;
+	flex-direction: column;
+	font-family: "Montserrat", sans-serif;
+	font-size: 70px;
+	zoom: 50%;
 }
 
 .top {
-  height: 50vh;
-  background-color: #5896EC;
-  color: #FFFFFF;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+	height: 35vh;
+	min-height: 600px;
+	background-color: #5896ec;
+	color: #ffffff;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .bottom {
-  height: 50vh;
-  color: #5896EC;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
+	height: 65vh;
+	min-height: 800px;
+	color: #5896ec;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	padding-top: 300px;
 }
 
-h3{
-  font-size: 100px;
-  padding-right: 100px;
-  padding-left: 100px;
-  padding-bottom: 0;
-  margin-bottom: 50px;
+h3 {
+	font-size: 100px;
+	padding-right: 100px;
+	padding-left: 100px;
+	padding-bottom: 0;
+	margin-bottom: 50px;
 }
 
-a{
-  font-size: 175px !important;
-  text-decoration: none;
-  color: #5896EC;
+p {
+	padding-top: 180px;
+	max-width: 700px;
+	word-wrap: break-word;
+	color: #5896ec;
 }
 
-a:hover{
-  color: #2374E7;
+#github-pic {
+	padding-top: 10px;
+}
+
+#nano {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+}
+
+a {
+	font-size: 175px !important;
+	text-decoration: none;
+	color: #5896ec;
+}
+
+a:hover {
+	color: #2374e7;
 }
 
 span {
-  color: #89db2a;
+	color: #89db2a;
 }
