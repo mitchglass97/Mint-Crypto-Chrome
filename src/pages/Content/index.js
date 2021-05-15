@@ -18,7 +18,7 @@
 
 let intervalTimer = null;
 let userCurrencySymbol = "USD";
-import secrets from "secrets";
+import secrets from "secrets"; // similar to dotenv, used for API key
 
 setTimeout(function () {
 	if (isUserLoggedIntoMint()) {

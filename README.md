@@ -4,6 +4,8 @@
 
 Mint Crypto is a Chrome extension designed to easily **keep the value of your cryptocurrency updated in your [Mint](https://mint.intuit.com/) account**.
 
+Mint Crypto makes it easy to add crypto to Mint that you own in places that can't be added to Mint natively, such as crypto wallets and many crypto exchanges.
+
 ## About
 
 To use Mint Crypto, all you have to do is enter the symbol and quantity of your crypto(s) while logged into Mint, click Sync, and Mint Crypto will create or edit a custom asset/property in Mint called "Cryptocurrency" with the current value of your crypto. **After first-time setup, Mint Crypto will automatically update your account with the current value of your crypto in a new tab every time you log into Mint** as long as it has more than than 30 minutes since your last sync.
@@ -11,8 +13,6 @@ To use Mint Crypto, all you have to do is enter the symbol and quantity of your 
 ![Mint Crypto screenshot](https://user-images.githubusercontent.com/52224377/118342431-f756b800-b4e8-11eb-8bdb-fac517d65d62.PNG)
 
 You can still use the pop-up window after first-time setup if you want to 1) modify your holdings or 2) force a sync.
-
-Mint Crypto makes it easy to add crypto to Mint that you own in places that can't be added to Mint natively, such as crypto wallets and many crypto exchanges.
 
 Mint Crypto uses the [Binance API](https://github.com/binance/binance-spot-api-docs) to get crypto price data, meaning that Mint Crypto supports any coins that Binance supports (350+).
 
