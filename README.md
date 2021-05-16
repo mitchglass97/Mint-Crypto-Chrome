@@ -39,9 +39,9 @@ This extension, like any Chrome Extension, is split into three parts: a popup sc
 
 The [**popup**](./src/pages/Popup/Popup.jsx) script defines the visual part of the extension-- the popup window that you see when you click the extension icon in the toolbar.
 
-The popup script itself cannot interact with a website, it can only gather information from the user and send messages to the content and background scripts. When the user submits the pop-up form by clicking Sync, the popup script does two things:
+The popup script itself cannot interact with a website, it can only gather information from the user and send messages to the content and background scripts.
 
-Once the form is submitted, a **message is sent to the content script** (using [chrome.tabs.sendMessage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-sendMessage)) with an array of all the coin objects and the user's preferred currency. An object might look like {name: "BTC", quantity: 0.5}. The popup script also save's the user's coin data **locally** to chrome.storage so that Mint Crypto can run automatic syncs whenever the user logs in.
+When a user clicks the Sync button, a **message is sent to the content script** (using [chrome.tabs.sendMessage](https://developer.chrome.com/docs/extensions/reference/tabs/#method-sendMessage)) with an array of all the coin objects and the user's preferred currency. An object might look like {name: "BTC", quantity: 0.5}. The popup script also save's the user's coin data **locally** to chrome.storage so that Mint Crypto can run automatic syncs whenever the user logs in.
 
 Note: The popup form can only be submitted if all the inputs are valid:
 
@@ -52,13 +52,13 @@ Note: The popup form can only be submitted if all the inputs are valid:
 
 The [**content**](./src/pages/Content/index.js) script runs on any Chrome tab that is on Mint.com. It is the only script that can directly interact with a web page and do things like fill out forms and click buttons.
 
-The content script will receive a message from background or popup scripts saying "Hey, please update the user's Mint account." The content script then takes the user's coin info and calculates the value of the coin(s) using the Binance API. The content script will then interact with Mint.com and click through the process of either or editing a property/asset named "Cryptocurrency" with the calculated value. (If the user selects a currency that is not USD, the content script will also make a call to The Free Currency Converter API to convert the USD value to another currency.
+The content script will receive a message from background or popup scripts saying "Hey, please update the user's Mint account." The content script then takes the user's coin info and calculates the value of the coin(s) using the Binance API. The content script will then interact with Mint.com and click through the process of either creating (on first-time setup) or editing a property/asset named "Cryptocurrency" with the calculated value. (If the user selects a currency that is not USD, the content script will also make a call to The Free Currency Converter API to convert the USD value to another currency.
 
 The content script also displays either a "syncing" or "sync complete" message in the top right of the page.
 
 ### Background Script
 
-The background script also has the highest-level access out of all the parts of a Chrome extension. The background script is always running, whereas the popup script can only run when the popup is open and the content script can only run on tabs that are on Mint.com (as specified in the host permissions in the manifest.json file).
+The background script has the highest-level access out of all the parts of a Chrome extension. It can do things like open and close a new tab. The background script is always running, whereas the popup script can only run when the popup is open and the content script can only run on tabs that are on Mint.com (as specified in the host permissions in the manifest.json file).
 
 Below is a flowchart describing the logic flow of how/when Mint Crypto performs an automatic sync.
 
