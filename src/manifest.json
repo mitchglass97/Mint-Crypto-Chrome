@@ -1,6 +1,7 @@
 {
 	"manifest_version": 3,
 	"name": "Mint Cryptocurrency",
+	"description": "Add your crypto holdings to your Mint account and keep them synced automatically.",
 	"options_page": "options.html",
 	"background": { "service_worker": "background.bundle.js" },
 	"action": {
