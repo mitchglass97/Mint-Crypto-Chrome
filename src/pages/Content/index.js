@@ -18,7 +18,6 @@
 
 let intervalTimer = null;
 let userCurrencySymbol = "USD";
-import secrets from "secrets"; // similar to dotenv, used for API key
 
 setTimeout(function () {
 	if (isUserLoggedIntoMint()) {
@@ -200,13 +199,30 @@ async function calculateValueOfUserCrypto(coinData) {
 
 	for (let i = 0; i < coinData.length; i++) {
 		// Fetch price data
-		stringAPI = "https://api.binance.us/api/v3/avgPrice?symbol=" + coinData[i].coinName + "USD";
-		price = await fetch(stringAPI);
-		price = await price.json();
 
-		// Calculate value
-		coinValue = (coinData[i].coinQuantity * price.price).toFixed(2);
-		sum += Number(coinValue);
+		// Use a different API for DOT
+		if (coinData[i].coinName == "DOT") {
+			stringAPI = "https://api.coincap.io/v2/assets/polkadot";
+			price = await fetch(stringAPI);
+			price = await price.json();
+
+			coinValue = (coinData[i].coinQuantity * price.data.priceUsd).toFixed(2);
+			sum += Number(coinValue);
+		} else if (coinData[i].coinName == "CHZ") {
+			stringAPI = "https://api.coincap.io/v2/assets/chiliz";
+			price = await fetch(stringAPI);
+			price = await price.json();
+
+			coinValue = (coinData[i].coinQuantity * price.data.priceUsd).toFixed(2);
+			sum += Number(coinValue);
+		} else {
+			stringAPI = "https://api.binance.us/api/v3/avgPrice?symbol=" + coinData[i].coinName + "USD";
+			price = await fetch(stringAPI);
+			price = await price.json();
+
+			coinValue = (coinData[i].coinQuantity * price.price).toFixed(2);
+			sum += Number(coinValue);
+		}
 	}
 
 	sum = sum.toFixed(2);
@@ -224,9 +240,7 @@ async function calculateValueOfUserCrypto(coinData) {
 	// then multiply sum times that value before adding it to Mint
 	if (userCurrencySymbol != "USD") {
 		key = "USD_" + userCurrencySymbol;
-		response = await fetch(
-			"https://free.currconv.com/api/v7/convert?q=" + key + "&compact=ultra&apiKey=" + secrets.currencyConverterApiKey
-		);
+		response = await fetch("https://free.currconv.com/api/v7/convert?q=" + key + "&compact=ultra&apiKey=4ed4163d2967dbf1beaa");
 		response = await response.json();
 		sum = sum * response[key];
 	}
