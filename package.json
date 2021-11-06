@@ -1,6 +1,6 @@
 {
 	"name": "mint-cryptocurrency",
-	"version": "1.0.4",
+	"version": "1.0.5",
 	"description": "Add your crypto holdings to your Mint account and keep them synced automatically.",
 	"license": "MIT",
 	"repository": {
