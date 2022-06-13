@@ -1,5 +1,8 @@
 ![Mint Crypto logo](https://user-images.githubusercontent.com/52224377/111899772-84572680-89fc-11eb-9bac-35fbccf564a9.png)
 
+# DISCLAIMER
+This extension is not functioning properly since Mint's recent website update. I am looking into a fix and will keep this section updated.
+
 # Mint Crypto Chrome Extension
 
 Mint Crypto is a Chrome extension designed to easily **keep the value of your cryptocurrency updated in your [Mint](https://mint.intuit.com/) account**. Mint Crypto makes it easy to add crypto to Mint that you own in places that can't be added to Mint natively, such as crypto wallets and many crypto exchanges.
